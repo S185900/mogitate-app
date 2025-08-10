@@ -1,6 +1,6 @@
 .register {
     max-width: 1600px;
-    height: 1000px;
+    height: 1600px;
     background-color: #F8F8F8;
 }
 
@@ -172,4 +172,27 @@ input[type="checkbox"]:checked::after {
     height: 50px;
     gap: 20px;
     margin-top: 20px;
+}
+
+.edit__inner__grid-fruit-img {
+    width: 450px;
+    height: 340px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.edit__inner__grid-fruit-img img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.edit__inner__file-select {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 20px;
 }

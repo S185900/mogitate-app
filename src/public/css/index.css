@@ -163,10 +163,122 @@
     margin: 20px;
 }
 
+/* ページネーション */
 .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     padding: 10px 10px 10px 10px;
-    margin-left: 310px;
+    margin-left: 180px;
+    gap: 20px;
 }
+
+.disabled {
+    font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #4B4B4B;
+}
+
+.paginate-arrow {
+    font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #4B4B4B;
+    text-decoration: none;
+    padding-bottom: 20px;
+}
+.active {
+    font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #4B4B4B;
+    text-decoration: none;
+}
+
+.active-2 {
+    font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #4B4B4B;
+    text-decoration: none;
+    padding-top: 20px;
+}
+
+/* ソート検索されたら表示されるタブ */
+.close-tab {
+    display: none;
+    font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #4B4B4B;
+}
+
+.index__inner__sidebar-filter-tabs {
+    display: flex;
+    justify-content: center;
+    align-items: bottom;
+    width: 200px;
+    height: 48px;
+    padding: 13px 10px 6px 15px;
+    border: 1px solid #F5C800;
+    border-radius: 40px;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
+    background-color: #FFFFFF;
+    margin-top: 20px;
+}
+
+/* ホバー時のスタイル */
+.index__inner__sidebar-filter-tabs:hover {
+    background-color: rgb(221, 180, 0);
+    /* 元の色より少し暗いトーンに変更 */
+}
+
+.close_btn {
+    display: block;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #F5C800;
+    border-radius: 50%;
+    background: #fff;
+    margin-left: 144px;
+    bottom: 25px;
+}
+
+.close_btn::before,
+.close_btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3px;
+    height: 18px;
+    background: #F5C800;
+    /* バツ印の色 */
+}
+
+.close_btn::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.close_btn::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+

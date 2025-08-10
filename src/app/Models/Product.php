@@ -10,11 +10,22 @@ class Product extends Model
     use HasFactory;
 
     protected $guarded = [
-        'id',
+
     ];
 
-    public function season()
+    protected $fillable = [
+        'name',
+        'price',
+        'image',
+        'description',
+        'season_id',
+        'product_id',
+    ];
+
+    public function seasons()
     {
         return $this->belongsToMany(Season::class, 'products_seasons', 'product_id', 'season_id');
     }
 }
+
+

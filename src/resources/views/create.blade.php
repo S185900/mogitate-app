@@ -4,7 +4,8 @@
 <link rel="stylesheet" href="{{ asset('css/create.css')}}">
 @endsection
 
-
+<!-- 商品登録画面 -->
+<!-- http://localhost/products/register -->
 @section('content')
 <div class="register">
     <div class="register__inner">
@@ -27,9 +28,17 @@
             </label>
             <label class="register__inner-select" for="file">
                 <h3 class="register__inner-input__ttl">商品画像<span class="required-red-span">必須</span></h3>
-                <div class="register__inner-input__file" id="file" type="button">
-                    <input class="register__inner-input__file-submit" type="file" name="image" id="file" accept="image/*"/>
-                    ファイルを選択
+                <div class="edit__inner__grid-fruit-img">
+                    <img src="/storage/kiwi.png" alt="フルーツ画像">
+                </div>
+                <div class="edit__inner__file-select">
+                    <div class="register__inner-input__file" id="file" type="button">
+                        <input class="register__inner-input__file-submit" type="file" name="image" id="file" accept="image/*"/>
+                        ファイルを選択
+                    </div>
+                    <div class="edit__inner-input__file-name">
+                        <p>image01.jpg</p>
+                    </div>
                 </div>
             </label>
             <div class="register__inner-input">
@@ -38,14 +47,14 @@
                     <span class="required-red-span">必須</span>
                     <span class="required-red-text">複数選択可</span>
                 </h3>
-                <div class="register__inner-input__checkbox" for="checkbox1">
-                    <input type="checkbox" id="checkbox1">
+                <div class="register__inner-input__checkbox">
+                    <input type="checkbox" id="checkbox1" name="season[]" value="1">
                     <label for="checkbox1" class="season1">春</label>
-                    <input type="checkbox" id="checkbox2">
+                    <input type="checkbox" id="checkbox2" name="season[]" value="2">
                     <label for="checkbox2" class="season2">夏</label>
-                    <input type="checkbox" id="checkbox3">
+                    <input type="checkbox" id="checkbox3" name="season[]" value="3">
                     <label for="checkbox3" class="season3">秋</label>
-                    <input type="checkbox" id="checkbox4">
+                    <input type="checkbox" id="checkbox4" name="season[]" value="4">
                     <label for="checkbox4" class="season4">冬</label>
                 </div>
             </div>
@@ -54,8 +63,8 @@
                 <textarea class="register__inner-input__textarea" id="description" name="description" rows="6" cols="30" placeholder="例）爽やかな香りと上品な甘みが特長的なキウイは大人から子どもまで大人気のフルーツです。疲れた脳や体のエネルギー補給にも最適の商品です。もぎたてフルーツのスムージーをお召し上がりください！"></textarea>
             </label>
             <label class="register__inner-btn" for="btn">
-                <input class="register__inner__btn-submit btn-gray" type="button" onclick="location.href='/products';" id="btn" value="戻る">
-                <input class="register__inner__btn-submit btn-yellow" type="submit" name="name" id="btn" value="登録">
+                <input class="register__inner__btn-submit btn-gray" type="button" onclick="location.href='/products';" id="btn-gray" value="戻る">
+                <input class="register__inner__btn-submit btn-yellow" type="submit" name="name" id="btn-yellow" value="登録">
             </label>
         </form>
     </div>

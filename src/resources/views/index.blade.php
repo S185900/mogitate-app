@@ -22,83 +22,54 @@
             </label>
             <h3 class="index__inner__sidebar-h3-ttl">価格順で表示</h3>
             <label class="index__inner__sidebar-select" for="price">
-                <select class="index__inner__sidebar-select-price" name="price" id="price" value="">
-                    <option disabled selected>価格で並べ替え</option>
-                    <option value="1">800</option>
-                    <option value="2">900</option>
-                    <option value="3">1200</option>
+                <select class="index__inner__sidebar-select-price" name="sort" id="price" value="" onchange="this.form.submit()">
+                    <option disabled {{ !request('sort') ? 'selected' : '' }}>価格で並べ替え</option>
+                    <option value="high" {{ request('sort') == 'high' ? 'selected' : '' }}>高い順に表示</option>
+                    <option value="low" {{ request('sort') == 'low' ? 'selected' : '' }}>低い順に表示</option>
                 </select>
             </label>
+
+            <!-- ソート検索されたら表示されるタブ -->
+            <div class="index__inner__sidebar-filter-tabs">
+                <label class="index__inner__sidebar-filter-tabs__display" for="close">
+                    <input class="close-tab" type="checkbox" value="" id="close" />
+                    高い順に表示<span class="close_btn"></span>
+                </label>
+            </div>
+            <div class="index__inner__sidebar-filter-tabs">
+                <label class="index__inner__sidebar-filter-tabs__display" for="close">
+                    <input class="close-tab" type="checkbox" value="" id="close" />
+                    低い順に表示<span class="close_btn"></span>
+                </label>
+            </div>
+
+
+            <!-- <div id="filter-tabs">
+                @if(request('sort'))
+                <div class="filter-tab">
+                    {{ request('sort') == 'high' ? '高い順に表示' : '低い順に表示' }}
+                    <a href="{{ route('products', array_diff_key(request()->all(), ['sort' => ''])) }}" class="close-tab">&times;</a>
+                </div>
+                @endif
+            </div> -->
+
         </nav>
         <div class="index__inner__grid">
-            <div class="index__inner__grid-fruit-card">
-                <img src="/storage/kiwi.png" alt="キウイ">
+            @foreach ($products as $product)
+            @csrf
+            <div class="index__inner__grid-fruit-card" onclick="location.href='/products/{{ $product->id }}'">
+                <img src="{{ asset($product->image) }}" alt="{{ pathinfo($product->image, PATHINFO_FILENAME) }}">
                 <div class="index__inner__grid-fruit-card__product-info">
-                    <h3>キウイ</h3>
-                    <p>¥800</p>
+                    <h3>{{ $product->name }}</h3>
+                    <p>¥{{ number_format($product->price) }}</p>
                 </div>
             </div>
-            <div class="index__inner__grid-fruit-card">
-                <img src="/storage/strawberry.png" alt="ストロベリー">
-                <div class="index__inner__grid-fruit-card__product-info">
-                    <h3>ストロベリー</h3>
-                    <p>¥1200</p>
-                </div>
-            </div>
-            <div class="index__inner__grid-fruit-card">
-                <img src="/storage/orange.png" alt="オレンジ">
-                <div class="index__inner__grid-fruit-card__product-info">
-                    <h3>オレンジ</h3>
-                    <p>¥850</p>
-                </div>
-            </div>
-            <div class="index__inner__grid-fruit-card">
-                <img src="/storage/watermelon.png" alt="メロン">
-                <div class="index__inner__grid-fruit-card__product-info">
-                    <h3>スイカ</h3>
-                    <p>¥700</p>
-                </div>
-            </div>
-            <div class="index__inner__grid-fruit-card">
-                <img src="/storage/peach.png" alt="ピーチ">
-                <div class="index__inner__grid-fruit-card__product-info">
-                    <h3>ピーチ</h3>
-                    <p>¥1000</p>
-                </div>
-            </div>
-            <div class="index__inner__grid-fruit-card">
-                <img src="/storage/grapes.png" alt="シャインマスカット">
-                <div class="index__inner__grid-fruit-card__product-info">
-                    <h3>シャインマスカット</h3>
-                    <p>¥1400</p>
-                </div>
-            </div>
-            <div class="index__inner__grid-fruit-card">
-                <img src="/storage/grapes.png" alt="シャインマスカット">
-                <div class="index__inner__grid-fruit-card__product-info">
-                    <h3>シャインマスカット</h3>
-                    <p>¥1400</p>
-                </div>
-            </div>
-            <div class="index__inner__grid-fruit-card">
-                <img src="/storage/grapes.png" alt="シャインマスカット">
-                <div class="index__inner__grid-fruit-card__product-info">
-                    <h3>シャインマスカット</h3>
-                    <p>¥1400</p>
-                </div>
-            </div>
-            <div class="index__inner__grid-fruit-card">
-                <img src="/storage/grapes.png" alt="シャインマスカット">
-                <div class="index__inner__grid-fruit-card__product-info">
-                    <h3>シャインマスカット</h3>
-                    <p>¥1400</p>
-                </div>
-            </div>
+            @endforeach
         </div>
-        
     </div>
     <div class="paginate">
-        {{ $product->appends(request()->query())->links('vendor.pagination.custom') ?? '' }}
+        <!-- {{ $products->links() }} -->
+        {{ $products->appends(request()->query())->links('vendor.pagination.custom') ?? '' }}
     </div>
 </div>
 @endsection

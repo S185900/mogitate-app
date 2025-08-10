@@ -27,7 +27,7 @@
         @if ($page == $paginator->currentPage())
         <div class="active" aria-current="page"><span>{{ $page }}</span></div>
         @else
-        <div><a href="{{ $url }}">{{ $page }}</a></div>
+        <div><a class="active-2" href="{{ $url }}">{{ $page }}</a></div>
         @endif
         @endforeach
         @endif
@@ -36,11 +36,11 @@
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
         <div>
-            <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">&rsaquo;</a>
+            <a class="paginate-arrow" href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">&rsaquo;</a>
         </div>
         @else
         <div class="disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
-            <span aria-hidden="true">&rsaquo;</span>
+            <span class="paginate-arrow" aria-hidden="true">&rsaquo;</span>
         </div>
         @endif
     </div>
