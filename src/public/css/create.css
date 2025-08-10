@@ -1,0 +1,175 @@
+.register {
+    max-width: 1600px;
+    height: 1000px;
+    background-color: #F8F8F8;
+}
+
+.register__inner {
+    text-align: left;
+    padding: 50px 60px 20px 300px;
+}
+
+.register__heading-ttl {
+    font-family: 'Hiragino Kaku Gothic Pro';
+    font-weight: 600;
+    font-style: W6;
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #333333;
+    padding: 30px 0 30px 0;
+}
+
+.register__inner-input__ttl {
+    font-family: 'Hiragino Kaku Gothic Pro';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #4B4B4B;
+    padding-bottom: 15px;
+    margin: 40px 0 5px 0;
+}
+
+.required-red-span {
+    width: 34px;
+    height: 18px;
+    background-color: #FD0707;
+    font-family: 'Hiragino Kaku Gothic Pro';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+    padding: 4px 7px;
+    margin-left: 10px;
+}
+
+.required-red-text {
+    font-family: 'Hiragino Kaku Gothic Pro';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+    margin-left: 10px;
+    color: #FD0707;
+}
+
+.register__inner-input__input {
+    display: block;
+    width: 760px;
+    height: 43px;
+    padding: 11px 20px 11px 20px;
+    border: 1px solid #E0DFDE border-radius: 5px;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
+    background-color: #FFFFFF;
+}
+
+.register__inner-input__input-submit {
+    font-family: 'Hiragino Kaku Gothic Pro';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #E0DFDE;
+    width: 100%;
+}
+
+/* 入力フォームに入力するときだけ文字色を濃くする */
+.register__inner-input__input-submit:focus {
+    color: #333333;
+    outline: none;
+}
+
+
+/* 丸いチェックボックス */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #4B4B4B;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* 丸いチェックボックス_チェックした時の背景カラー */
+input[type="checkbox"]:checked {
+    background-color: #4B4B4B;
+    position: relative;
+}
+
+/* 丸いチェックボックス_チェックマーク */
+input[type="checkbox"]:checked::after {
+    content: "✔";
+    font-size: 14px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 丸いチェックボックス_labelの文字装飾 */
+.season1,
+.season2,
+.season3,
+.season4 {
+    font-family: 'Hiragino Kaku Gothic Pro';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #4B4B4B;
+    margin-right: 50px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+/* 丸いチェックボックス_input,labelの水平揃え */
+.register__inner-input__checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.register__inner-input__textarea {
+    width: 760px;
+    background-color: #FFFFFF;
+    border: 1px solid #E0DFDE border-radius: 5px;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
+    padding: 11px 20px 11px 20px;
+    font-family: 'Hiragino Kaku Gothic Pro';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 14px;
+    line-height: 170%;
+    letter-spacing: 10%;
+    color: #4B4B4B;
+}
+
+/* 入力フォームに入力するときだけ文字色を濃くする */
+.register__inner-input__textarea:focus {
+    color: #333333;
+    outline: none;
+}
+
+.register__inner-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 760px;
+    height: 50px;
+    gap: 20px;
+    margin-top: 20px;
+}

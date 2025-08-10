@@ -1,0 +1,172 @@
+.index {
+    max-width: 1600px;
+    background-color: #F8F8F8;
+}
+
+.paginate {
+    max-width: 1600px;
+    background-color: #F8F8F8;
+}
+
+.index__heading-btn-submit {
+    text-decoration: none;
+}
+
+.index__heading-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 60px 20px 60px;
+}
+
+.index__inner {
+    display: flex;
+    padding: 50px 60px 20px 60px;
+}
+
+.index__heading-ttl {
+    font-family: 'Hiragino Kaku Gothic Pro';
+    font-weight: 600;
+    font-style: W6;
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #333333;
+}
+
+/* サイドバーの検索窓 */
+.text-search {
+    display: block;
+    width: 240px;
+    padding: 14.5px 10px 14.5px 20px;
+    border: 1px solid #E0DFDE;
+    border-radius: 25px;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
+    background-color: #FFFFFF;
+}
+
+/* サイドバーの検索窓_文字装飾 */
+.index__inner__sidebar-search-submit {
+    font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #E0DFDE;
+}
+
+/* サイドバーの検索窓_入力するときだけ文字色を濃くする */
+.index__inner__sidebar-search-submit:focus {
+    color: #333333;
+    outline: none;
+}
+
+.index__inner-input {
+    margin-bottom: 20px;
+}
+
+.index__inner__sidebar-h3-ttl {
+    font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
+    font-weight: 600;
+    font-style: W6;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #333333;
+    margin-top: 50px;
+}
+
+/* サイドバーの価格プルダウン */
+.index__inner__sidebar-select {
+    display: block;
+    width: 240px;
+    padding: 11px 10px 11px 20px;
+    border: 1px solid #E0DFDE;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
+    background-color: #FFFFFF;
+    margin-top: 20px;
+}
+
+/* サイドバーの価格プルダウン_文字装飾 */
+.index__inner__sidebar-select-price {
+    font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #E0DFDE;
+}
+
+.index__inner__sidebar-select {
+    position: relative;
+}
+
+.index__inner__sidebar-select::after {
+    position: absolute;
+    top: 50%;
+    left: 85%;
+    width: 14px;
+    height: 0;
+    border-top: 10px solid #BEB1A6;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    content: "";
+    transform: translateY(-50%);
+}
+
+.index__inner__sidebar-select-price {
+    padding: 0px;
+    width: 50%;
+    background-color: #ffffff;
+    color: #BEB1A6;
+}
+
+.index__inner__grid {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-left: 30px;
+    overflow: hidden;
+    padding: 5px;
+}
+
+.index__inner__grid-fruit-card {
+    width: 364px;
+    height: 318px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    box-shadow:
+    2px 2px 5px rgba(0, 0, 0, 0.1),
+    /* 右下の影 */
+    -2px -2px 5px rgba(0, 0, 0, 0.1);
+    /* 左上の影 */
+}
+
+.index__inner__grid-fruit-card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+
+}
+
+.index__inner__grid-fruit-card__product-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+    margin-left: 310px;
+}

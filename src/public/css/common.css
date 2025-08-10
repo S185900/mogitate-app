@@ -1,0 +1,186 @@
+html,
+body {
+    height: 100%;
+}
+
+body,
+textarea,
+input {
+    color: #4B4B4B;
+}
+
+textarea::placeholder,
+input::placeholder {
+    color: #E0DFDE;
+}
+
+h1 {
+    all: unset;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* ヘッダー */
+.header {
+    display: grid;
+    align-items: center;
+    height: 53px;
+    border: none;
+    text-align: left;
+    font-family: serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.header__heading {
+    font-family: 'jsMath-cmti10';
+    font-weight: 500;
+    font-style: Italic;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    padding: 10px 20px 10px 50px;
+    color: #F5C800;
+}
+
+.header__link {
+    text-decoration: none;
+}
+
+.index__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+}
+
+/* オレンジ系ボタン */
+.btn-orange {
+    display: block;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+    background-color: #FFA929;
+}
+
+/* オレンジ系ボタン_ホバー時のワントーン暗い色 */
+.btn-orange:hover {
+    background-color: #DF9425;
+}
+
+/* オレンジ系ボタン_文字装飾 */
+.index__heading-btn-submit {
+    font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
+    font-weight: 600;
+    font-style: W6;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #4B4B4B;
+}
+
+/* イエロー系ボタン */
+.btn-yellow {
+    display: block;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+    background-color: #F5C800;
+    text-align: center;
+}
+
+/* イエロー系ボタン_ホバー時のワントーン暗い色 */
+.btn-yellow:hover {
+    background-color: #DDB400;
+}
+
+/* イエロー系ボタン_文字装飾 */
+.index__inner__sidebar-btn-submit {
+    font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
+    font-weight: 600;
+    font-style: W6;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #4B4B4B;
+}
+
+/* グレー系ボタン */
+.btn-gray {
+    display: block;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+    background-color: #E0DFDE;
+    text-align: center;
+}
+
+/* グレー系ボタン_ホバー時のワントーン暗い色 */
+.btn-gray:hover {
+    background-color: #bfbfbf;
+}
+
+.register__inner__btn-submit {
+    font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
+    font-weight: 600;
+    font-style: W6;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #4B4B4B;
+    padding: 15px 80px;
+}
+
+/* ファイルを選択ボタン */
+.register__inner-input__file {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 140px;
+    height: 31px;
+    border: 1px solid #4B4B4B;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+    background-color: #E0DFDE;
+    text-align: center;
+    /* 文字装飾 */
+    padding: 5px 10px;
+    font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #4B4B4B;
+}
+
+/* ファイルを選択ボタン_ホバー時のワントーン暗い色 */
+.register__inner-input__file:hover {
+    background-color: #bdbdbd;
+}
+
+/* ファイルを選択ボタン_デフォルトメッセージ非表示（file機能は残します） */
+.register__inner-input__file-submit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.footer {
+    padding: 50px;
+    background-color: #F8F8F8;
+}
