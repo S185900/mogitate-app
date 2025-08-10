@@ -2,3 +2,4 @@
 !public/
 !public/*.png
 !.gitignore
+!src/storage/app/public/*.png
