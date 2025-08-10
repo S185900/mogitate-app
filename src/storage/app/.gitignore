@@ -1,9 +1,3 @@
 *
-# !public/
+!public/
 !.gitignore
-
-
-# storage全体を無視する
-/storage/*
-# publicディレクトリだけを対象外にする
-!/storage/public/
