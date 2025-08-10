@@ -4,8 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/create.css')}}">
 @endsection
 
-<!-- 商品登録画面 -->
-<!-- http://localhost/products/register -->
+
 @section('content')
 <div class="register">
     <div class="register__inner">
