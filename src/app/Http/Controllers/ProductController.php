@@ -18,8 +18,8 @@ class ProductController extends Controller
     // 商品一覧ページ：商品名で検索のアクション
     public function search(Request $request)
     {
-        $query = Product::query();
         $sort = $request->query('sort', 'default');
+        $query = Product::query();
 
         // 商品名で検索
         if ($request->filled('name') && $request->name !== '商品名で検索') {
@@ -35,6 +35,7 @@ class ProductController extends Controller
         $products = $query->paginate(6);
 
         return view('index', compact('products'));
+
     }
 
 

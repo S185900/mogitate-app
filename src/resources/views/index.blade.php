@@ -34,13 +34,13 @@
                 </label>
 
                 <!-- ソート検索されたら表示されるタブ -->
-                <div class="index__inner__sidebar-filter-tabs">
-                    <label class="index__inner__sidebar-filter-tabs__display" for="close">
-                        <input class="close-tab" type="checkbox" value="" id="close" />
-                        高い順に表示<span class="close_btn"></span>
-                    </label>
+                <div class="index__inner__sidebar-filter-tabs" style="{{ request('sort') == 'high' ? 'display: block;' : 'display: none;' }}">
+                        <label class="index__inner__sidebar-filter-tabs__display" for="close">
+                            <input class="close-tab" type="checkbox" value="" id="close" />
+                            高い順に表示<span class="close_btn"></span>
+                        </label>
                 </div>
-                <div class="index__inner__sidebar-filter-tabs">
+                <div class="index__inner__sidebar-filter-tabs" style="{{ request('sort') == 'low' ? 'display: block;' : 'display: none;' }}">
                     <label class="index__inner__sidebar-filter-tabs__display" for="close">
                         <input class="close-tab" type="checkbox" value="" id="close" />
                         低い順に表示<span class="close_btn"></span>

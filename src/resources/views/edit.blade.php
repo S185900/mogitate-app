@@ -84,11 +84,11 @@
                         <input class="register__inner__btn-submit btn-gray" type="button" onclick="location.href='/products';" value="戻る" id="btn-edit">
                         <input class="register__inner__btn-submit btn-yellow edit-btn-yellow" type="submit" name="name" id="btn" value="変更を保存">
                     </label>
-                    <label class="trash-delete">
+                    <div class="trash-delete">
                         <button type="submit" aria-label="削除ボタン">
                             <img class="trash-can" src="/trash-can.png" alt="削除ボタン">
                         </button>
-                    </label>
+                    </div>
                 </div>
                 
             </div>
