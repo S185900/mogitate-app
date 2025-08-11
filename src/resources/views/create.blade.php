@@ -12,35 +12,51 @@
     <div class="register__heading">
         <h2 class="register__heading-ttl">商品登録</h2>
     </div>
-        <form class="register__inner__form" method="post">
+        <form id="product-form" class="register__inner__form" method="post" action="{{ route('products.store') }}" enctype="multipart/form-data" novalidate>
             @csrf
+
+            <!-- 商品名 -->
             <label class="register__inner-input" for="name">
                 <h3 class="register__inner-input__ttl">商品名<span class="required-red-span">必須</span></h3>
                 <div class="register__inner-input__input">
-                    <input class="register__inner-input__input-submit" type="text" name="name" id="name" value="" placeholder="商品名を入力">
+                    <input class="register__inner-input__input-submit" type="text" name="name" id="name" value="{{ old('name') }}" placeholder="商品名を入力">
                 </div>
             </label>
+
+            <!-- 値段 -->
             <label class="register__inner-input" for="price">
                 <h3 class="register__inner-input__ttl">値段<span class="required-red-span">必須</span></h3>
                 <div class="register__inner-input__input">
-                    <input class="register__inner-input__input-submit" type="text" name="price" id="price" value="" placeholder="値段を入力">
+                    <input class="register__inner-input__input-submit" type="text" name="price" id="price" value="{{ old('price') }}" placeholder="値段を入力">
                 </div>
             </label>
-            <label class="register__inner-select" for="file">
+
+            <!-- 商品画像 -->
+            <div class="register__inner-select">
                 <h3 class="register__inner-input__ttl">商品画像<span class="required-red-span">必須</span></h3>
                 <div class="edit__inner__grid-fruit-img">
-                    <img src="/storage/kiwi.png" alt="フルーツ画像">
+                    <!-- ファイルがstorageに一時保存されたらプレビュー表示、されなければ何も表示しない -->
+                    @if (session('temporaryFile'))
+                        <img src="{{ asset('storage/' . session('temporaryFile')) }}" alt="プレビュー画像">
+                    @endif
                 </div>
                 <div class="edit__inner__file-select">
-                    <div class="register__inner-input__file" id="file" type="button">
-                        <input class="register__inner-input__file-submit" type="file" name="image" id="file" accept="image/*"/>
+                    <label class="register__inner-input__file" id="image" type="button">
+                        <input class="register__inner-input__file-submit" type="file" name="image" id="image" accept="image/*">
                         ファイルを選択
-                    </div>
+                    </label>
                     <div class="edit__inner-input__file-name">
-                        <p>image01.jpg</p>
+                        <p>
+                            @if (!empty($temporaryFile))
+                                {{ pathinfo($temporaryFile, PATHINFO_FILENAME) }}
+                            @endif
+                        </p>
                     </div>
                 </div>
-            </label>
+            </div>
+
+
+            <!-- 季節 -->
             <div class="register__inner-input">
                 <h3 class="register__inner-input__ttl">
                     季節
@@ -48,24 +64,24 @@
                     <span class="required-red-text">複数選択可</span>
                 </h3>
                 <div class="register__inner-input__checkbox">
-                    <input type="checkbox" id="checkbox1" name="season[]" value="1">
-                    <label for="checkbox1" class="season1">春</label>
-                    <input type="checkbox" id="checkbox2" name="season[]" value="2">
-                    <label for="checkbox2" class="season2">夏</label>
-                    <input type="checkbox" id="checkbox3" name="season[]" value="3">
-                    <label for="checkbox3" class="season3">秋</label>
-                    <input type="checkbox" id="checkbox4" name="season[]" value="4">
-                    <label for="checkbox4" class="season4">冬</label>
+                    @foreach(['春' => 1, '夏' => 2, '秋' => 3, '冬' => 4] as $label => $value)
+                        <input type="checkbox" id="checkbox{{ $value }}" name="season[]" value="{{ $value }}">
+                        <label for="checkbox{{ $value }}" class="season1">{{ $label }}</label>
+                    @endforeach
                 </div>
             </div>
+
+            <!-- 商品説明 -->
             <label class="register__inner-textarea" for="description">
                 <h3 class="register__inner-input__ttl">商品説明<span class="required-red-span">必須</span></h3>
-                <textarea class="register__inner-input__textarea" id="description" name="description" rows="6" cols="30" placeholder="例）爽やかな香りと上品な甘みが特長的なキウイは大人から子どもまで大人気のフルーツです。疲れた脳や体のエネルギー補給にも最適の商品です。もぎたてフルーツのスムージーをお召し上がりください！"></textarea>
+                <textarea class="register__inner-input__textarea" id="description" name="description" rows="6" cols="30" placeholder="例）爽やかな香りと上品な甘みが特長的なキウイは大人から子どもまで大人気のフルーツです。疲れた脳や体のエネルギー補給にも最適の商品です。もぎたてフルーツのスムージーをお召し上がりください！">{{ old('description') }}</textarea>
             </label>
-            <label class="register__inner-btn" for="btn">
-                <input class="register__inner__btn-submit btn-gray" type="button" onclick="location.href='/products';" id="btn-gray" value="戻る">
-                <input class="register__inner__btn-submit btn-yellow" type="submit" name="name" id="btn-yellow" value="登録">
-            </label>
+
+            <!-- ボタン -->
+            <div class="register__inner-btn">
+                <button class="register__inner__btn-submit btn-gray" type="button" onclick="location.href='/products';" id="btn-back" value="">戻る</button>
+                <button form="product-form" class="register__inner__btn-submit btn-yellow" type="submit" id="btn-submit" value="">登録</button>
+            </div>
         </form>
     </div>
 </div>

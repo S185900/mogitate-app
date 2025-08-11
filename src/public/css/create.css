@@ -69,14 +69,14 @@
     background-color: #FFFFFF;
 }
 
-.register__inner-input__input-submit {
+.register__inner-input__input-submit input {
     font-family: 'Hiragino Kaku Gothic Pro';
     font-weight: 300;
     font-style: W3;
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 0%;
-    color: #E0DFDE;
+    color: #4B4B4B;
     width: 100%;
 }
 

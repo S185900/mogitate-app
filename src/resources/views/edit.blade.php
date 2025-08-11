@@ -12,7 +12,7 @@
         <nav class="edit__heading-nav" aria-label="breadcrumb">
             <ol class="edit__heading-nav__breadcrumbs">
                 <li class="breadcrumb-item-home"><a href="/products">商品一覧</a></li>
-                <span class="breadcrumb-item-arrow">></span>
+                    <span class="breadcrumb-item-arrow">></span>
                 <li class="breadcrumb-item-active" aria-current="page">{{ $name }}</li>
             </ol>
         </nav>
@@ -20,21 +20,35 @@
     <div class="edit__inner">
         <div class="edit__inner-detail-form">
             <div class="edit__inner-detail-form__form-1">
-                <div class="edit__inner__fruit-container">
-                    <div class="edit__inner__grid-fruit-img">
-                        <img src="{{ asset($image) }}" alt="{{ pathinfo($image, PATHINFO_FILENAME) }}">
-                    </div>
+                <form action="{{ route('file.update', ['productId' => $product->id]) }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="edit__inner__fruit-container">
+                        <div class="edit__inner__grid-fruit-img">
+                            <!-- ファイルがstorageに一時保存されたらプレビュー表示、されなければ一覧画面からの値受け渡しのみ -->
+                            @if (!empty($temporaryFile))
+                            <img src="{{ asset($temporaryFile) }}" alt="選択したファイル">
+                            @else
+                            <img src="{{ asset($image) }}" alt="{{ pathinfo($image, PATHINFO_BASENAME) }}">
+                            @endif
+                        </div>
 
-                    <label class="edit__inner-select" for="file">
-                        <div class="register__inner-input__file" id="file" type="button">
-                            <input class="register__inner-input__file-submit" type="file" name="image" id="file" accept="image/*"/>
-                            ファイルを選択
+                        <div class="edit__inner-select">
+                            <label class="register__inner-input__file" type="button" for="file-edit">
+                                <input class="register__inner-input__file-submit" type="file" name="image" accept="image/*" id="file-edit" onchange="this.form.submit()"/>
+                                ファイルを選択
+                            </label>
+                            <div class="edit__inner-input__file-name">
+                                <p>
+                                    @if (!empty($temporaryFile))
+                                        {{ pathinfo($temporaryFile, PATHINFO_FILENAME) }}
+                                    @else
+                                        {{ pathinfo($image, PATHINFO_FILENAME) }}
+                                    @endif
+                                </p>
+                            </div>
                         </div>
-                        <div class="edit__inner-input__file-name">
-                            <p>{{ $image }}</p>
-                        </div>
-                    </label>
-                </div>
+                    </div>
+                </form>
                 <div class="edit__inner__input-container">
                     <label class="edit__inner-input" for="name">
                         <h3 class="edit__inner-input__ttl">商品名</h3>
@@ -63,15 +77,17 @@
             <div class="edit__inner-detail-form__form-2">
                 <label class="edit__inner-textarea" for="description">
                     <h3 class="edit__inner-input__ttl">商品説明</h3>
-                    <textarea class="edit__inner-input__textarea" id="description" name="description" rows="6" cols="30" placeholder="{{ $description }}"></textarea>
+                    <textarea class="edit__inner-input__textarea" id="description" name="description" rows="6" cols="30" placeholder="">{{ $description }}</textarea>
                 </label>
                 <div class="edit__inner-btn">
-                    <label class="edit__inner-btn" for="btn">
-                        <input class="register__inner__btn-submit btn-gray" type="button" onclick="location.href='/products';" id="btn" value="戻る">
+                    <label class="edit__inner-btn" for="btn-edit">
+                        <input class="register__inner__btn-submit btn-gray" type="button" onclick="location.href='/products';" value="戻る" id="btn-edit">
                         <input class="register__inner__btn-submit btn-yellow edit-btn-yellow" type="submit" name="name" id="btn" value="変更を保存">
                     </label>
-                    <label class="trash-delete" for="delete">
-                        <button type="submit"><img class="trash-can" src="/trash-can.png" alt="削除ボタン"></button>
+                    <label class="trash-delete">
+                        <button type="submit" aria-label="削除ボタン">
+                            <img class="trash-can" src="/trash-can.png" alt="削除ボタン">
+                        </button>
                     </label>
                 </div>
                 

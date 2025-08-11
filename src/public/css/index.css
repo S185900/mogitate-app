@@ -1,5 +1,6 @@
 .index {
     max-width: 1600px;
+    height: 1700px;
     background-color: #F8F8F8;
 }
 
@@ -46,14 +47,14 @@
 }
 
 /* サイドバーの検索窓_文字装飾 */
-.index__inner__sidebar-search-submit {
+.index__inner__sidebar-search-submit input {
     font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
     font-weight: 300;
     font-style: W3;
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 0%;
-    color: #E0DFDE;
+    color: #4B4B4B;
 }
 
 /* サイドバーの検索窓_入力するときだけ文字色を濃くする */
@@ -134,6 +135,7 @@
     padding: 5px;
 }
 
+/* フルーツカードの装飾と動作 */
 .index__inner__grid-fruit-card {
     width: 364px;
     height: 318px;
@@ -146,6 +148,15 @@
     /* 右下の影 */
     -2px -2px 5px rgba(0, 0, 0, 0.1);
     /* 左上の影 */
+}
+
+.index__inner__grid-fruit-card {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.index__inner__grid-fruit-card:hover {
+    background-color: rgba(245, 200, 0, 0.3);
+    transform: scale(1.05);
 }
 
 .index__inner__grid-fruit-card img {
