@@ -31,8 +31,8 @@ class UpdateProductRequest extends FormRequest
             'image' => $this->isMethod('post')
                 ? 'required|image|mimes:png,jpeg|max:2048'
                 : 'nullable|image|mimes:png,jpeg|max:2048',
-            'seasons' => 'nullable|array',
-            'seasons.*' => 'exists:seasons,id',
+            'season' => 'required|array',
+            'season.*' => 'in:1,2,3,4',
         ];
     }
 

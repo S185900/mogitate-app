@@ -61,6 +61,7 @@ class ProductController extends Controller
             'name' => $product->name,
             'allSeasons' => $allSeasons
         ]);
+        
     }
 
 
@@ -72,10 +73,8 @@ class ProductController extends Controller
     // 画像ファイル再選択：セッションに画像のパスが格納され、次回リクエスト時にプレビュー表示
     public function uploadTemporaryImage(Request $request)
     {
-
         $path = $request->file('image')->store('temp_images'); // 一時保存ディレクトリ
         session(['temporary_image_path' => $path]); // セッションに保存
-
 
         return redirect()->back();
     }
@@ -84,56 +83,54 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, $productId)
     {
 
-        // dd($request->all());
-        $validatedData = $request->validated(); // バリデーション済みデータを取得
+        // バリデーション済みデータを取得
+        $validatedData = $request->validated();
+
+        // 商品情報の取得
+        $product = Product::findOrFail($productId);
 
         // 一時保存画像の処理
         $temporaryPath = session('temporary_image_path');
         if ($temporaryPath) {
             $newPath = str_replace('temp_images', 'public/images', $temporaryPath);
-            Storage::move($temporaryPath, $newPath);
             // Laravelのファサードシステムを操作：一時保存から本保存へ移動（シンボリックリンクが機能）
+            Storage::move($temporaryPath, $newPath); // 一時保存から本保存へ移動
+            $validatedData['image'] = $newPath; // 新しい画像パスを設定
         }
 
-        $product = Product::findOrFail($productId);
-        $product->name = $validatedData['name'];
-        $product->price = $validatedData['price'];
-        $product->description = $validatedData['description'];
-        $product->image = isset($newPath) ? $newPath : $product->image; // カラム名
+        // 商品情報を更新
+        $product->update([
+            'name' => $validatedData['name'],
+            'price' => $validatedData['price'],
+            'description' => $validatedData['description'],
+            'image' => $validatedData['image'] ?? $product->image, // 画像が未設定の場合は既存画像を保持
+        ]);
 
         // 季節データの更新（配列形式で受け取り）
-        $product->seasons()->sync($request->input('seasons', []));
-
-        // 変更された部分だけデータベース上で更新
-        $product->save();
+        $product->seasons()->sync($request->input('season', []));
 
         // セッション削除
         session()->forget('temporary_image_path');
 
-        $products = Product::all(); // 全商品を取得
+        // 更新後にリダイレクト
         return redirect()->route('products.index', ['productId' => $product->id]);
 
-        // return view('index', [
-        //     'temporaryImagePath' => session('temporary_image_path'),
-        //     'products' => $products
-        // ]);
     }
 
     // ゴミ箱ボタン（削除）
     public function destroy($productId)
     {
-        try {
-            $product = Product::findOrFail($productId); // 対象の商品id検索
-            $product->delete(); // データベースから商品を削除
 
-            return redirect('/products')->with('success', '商品を削除しました！');
-        } catch (Exception $e) {
-            return redirect('/products')->with('error', '商品が削除できませんでした: ' . $e->getMessage());
-        }
+        // 商品情報を取得
+        $product = Product::findOrFail($productId);
+
+        // 商品を削除
+        $product->delete();
+
+        // 削除後に一覧画面へリダイレクト
+        return redirect()->route('products.index');
+
     }
-
-
-
 
 
     // ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
@@ -183,7 +180,7 @@ class ProductController extends Controller
     // session強制的にstorage/ファイル名へ変更
     public function convertStoragePath($storedFilePath) {
         return str_replace('public', 'storage', $storedFilePath);
-        
+
     }
 
 
