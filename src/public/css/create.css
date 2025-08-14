@@ -196,3 +196,75 @@ input[type="checkbox"]:checked::after {
     align-items: center;
     gap: 20px;
 }
+
+/* バリデーション */
+.error-message__name {
+    font-family: 'Hiragino Kaku Gothic Pro';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(253, 7, 7, 1);
+    padding-top: 12px;
+}
+
+.error-message__price {
+    font-family: 'Hiragino Kaku Gothic Pro';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(253, 7, 7, 1);
+    padding-top: 12px;
+}
+
+.error-message__file {
+    font-family: 'Hiragino Kaku Gothic Pro';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(253, 7, 7, 1);
+    padding-top: 12px;
+}
+
+.error-message__file_default {
+    font-family: 'Hiragino Kaku Gothic Pro';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 10%;
+    color: #4B4B4B;
+    padding-top: 12px;
+}
+
+.error-message__season {
+    font-family: 'Hiragino Kaku Gothic Pro';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(253, 7, 7, 1);
+    padding: 10px 0 2px 0;
+    /* display:flex対象外・フル幅改行 */
+    align-self: flex-start;
+    width: 100%;
+}
+
+.error-message__description {
+    font-family: 'Hiragino Kaku Gothic Pro';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(253, 7, 7, 1);
+    padding: 12px 0 2px 0;
+    text-align: left;
+}
+

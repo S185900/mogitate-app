@@ -24,15 +24,13 @@ Route::get('/products/search', [ProductController::class, 'search'])->name('prod
 // 商品カードをクリックすると商品詳細ページへ遷移
 Route::get('/products/{productId}', [ProductController::class, 'edit'])->name('products.edit');
 
-// 商品詳細ページ：ファイルを選択ボタン→画像ファイルをプレビュー表示
-Route::post('/products/{productId}', [ProductController::class, 'fileUpdate'])->name('file.update');
+// // 商品詳細ページ：ファイルを選択ボタン→画像ファイルをプレビュー表示
+// Route::post('/products/{productId}', [ProductController::class, 'fileUpdate'])->name('file.update');
 
-// 商品更新ページ
-// ルーティングは　/products/{productId}/update
+// 商品詳細ページ：データ更新して遷移
+Route::post('/products/{productId}/update', [ProductController::class, 'update'])->name('products.index');
 
+Route::get('/products/{productId}/edit', [ProductController::class, 'edit'])->name('products.edit');
 
-
-// // 商品詳細ページ
-// Route::get('/products/{productId}', function () {
-//     return view('edit');
-// });
+// 商品詳細ページ：データ削除して遷移
+Route::delete('/products/{productId}', [ProductController::class, 'destroy'])->name('products.destroy');

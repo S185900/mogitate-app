@@ -19,80 +19,112 @@
     </div>
     <div class="edit__inner">
         <div class="edit__inner-detail-form">
-            <div class="edit__inner-detail-form__form-1">
-                <form action="{{ route('file.update', ['productId' => $product->id]) }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="edit__inner__fruit-container">
-                        <div class="edit__inner__grid-fruit-img">
-                            <!-- ファイルがstorageに一時保存されたらプレビュー表示、されなければ一覧画面からの値受け渡しのみ -->
-                            @if (!empty($temporaryFile))
-                            <img src="{{ asset($temporaryFile) }}" alt="選択したファイル">
-                            @else
-                            <img src="{{ asset($image) }}" alt="{{ pathinfo($image, PATHINFO_BASENAME) }}">
+            <form action="{{ route('products.index', ['productId' => $productId]) }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="edit__inner-detail-form__form-1">
+
+                        <div class="edit__inner__fruit-container">
+                            <div class="edit__inner__grid-fruit-img">
+                                <!-- セッションに一時画像が存在すればそちらを優先して表示する -->
+                                <!-- そうでなければ、一覧画面からの値受け渡し -->
+                                @if (!empty($temporaryFile))
+                                <img src="{{ asset($temporaryFile) }}" alt="選択したファイル">
+                                @else
+                                <!-- これ動かしちゃダメだよ -->
+                                <img src="{{ asset($image) }}" alt="{{ pathinfo($image, PATHINFO_BASENAME) }}">
+                                @endif
+                            </div>
+
+                            <div class="edit__inner-select">
+                                <label class="register__inner-input__file" type="button" for="file-edit">
+                                    <input class="register__inner-input__file-submit" type="file" name="image" accept="image/*" id="file-edit" onchange="this.form.submit()"/>
+                                    ファイルを選択
+                                </label>
+                                <div class="edit__inner-input__file-name">
+                                    <p>
+                                        @if (!empty($temporaryFile))
+                                            {{ pathinfo($temporaryFile, PATHINFO_FILENAME) }}
+                                        @else
+                                            {{ pathinfo($image, PATHINFO_FILENAME) }}
+                                        @endif
+                                    </p>
+                                </div>
+                            </div>
+                            @if ($errors->has('image'))
+                                <div class="error-message__file">
+                                    <span>{{ $errors->first('image') }}</span>
+                                </div>
                             @endif
                         </div>
 
-                        <div class="edit__inner-select">
-                            <label class="register__inner-input__file" type="button" for="file-edit">
-                                <input class="register__inner-input__file-submit" type="file" name="image" accept="image/*" id="file-edit" onchange="this.form.submit()"/>
-                                ファイルを選択
+                    <div class="edit__inner__input-container">
+                        <div class="edit__inner-input" >
+                            <h3 class="edit__inner-input__ttl">商品名</h3>
+                            <label class="edit__inner-input__input" for="name-product">
+                                <input class="edit__inner-input__input-submit" type="text" name="name" value="{{ $name }}" id="name-product" placeholder="商品名を入力">
                             </label>
-                            <div class="edit__inner-input__file-name">
-                                <p>
-                                    @if (!empty($temporaryFile))
-                                        {{ pathinfo($temporaryFile, PATHINFO_FILENAME) }}
-                                    @else
-                                        {{ pathinfo($image, PATHINFO_FILENAME) }}
-                                    @endif
-                                </p>
+                            @if ($errors->has('name'))
+                                <div class="error-message__name">
+                                    <span>{{ $errors->first('name') }}</span>
+                                </div>
+                            @endif
+                        </div>
+                        <label class="edit__inner-input" for="price">
+                            <h3 class="edit__inner-input__ttl">値段</h3>
+                            <div class="edit__inner-input__input">
+                                <input class="edit__inner-input__input-submit" type="text" name="price" id="price" value="{{ $price }}" placeholder="値段を入力">
                             </div>
-                        </div>
-                    </div>
-                </form>
-                <div class="edit__inner__input-container">
-                    <label class="edit__inner-input" for="name">
-                        <h3 class="edit__inner-input__ttl">商品名</h3>
-                        <div class="edit__inner-input__input">
-                            <input class="edit__inner-input__input-submit" type="text" name="name" id="name" value="{{ $name }}" placeholder="商品名を入力">
-                        </div>
-                    </label>
-                    <label class="edit__inner-input" for="price">
-                        <h3 class="edit__inner-input__ttl">値段</h3>
-                        <div class="edit__inner-input__input">
-                            <input class="edit__inner-input__input-submit" type="text" name="price" id="price" value="{{ $price }}" placeholder="値段を入力">
-                        </div>
-                    </label>
-                    <div class="edit__inner-input">
-                        <h3 class="edit__inner-input__ttl">季節</h3>
-                        <div class="edit__inner-input__checkbox">
-                            @foreach ($allSeasons as $index => $season)
-                            <input id="checkbox{{ $index }}" type="checkbox" name="seasons[]" value="{{ $season->id }}"
-                            @if(isset($product) && $product->seasons->pluck('id')->contains($season->id)) checked @endif>
-                            <label for="checkbox{{ $index }}" class="season{{ $index }}">{{ $season->name }}</label>
-                            @endforeach
+                            @if ($errors->has('price'))
+                                <div class="error-message__price">
+                                    <span>{{ $errors->first('price') }}</span>
+                                </div>
+                            @endif
+                        </label>
+                        <div class="edit__inner-input">
+                            <h3 class="edit__inner-input__ttl">季節</h3>
+                            <div class="edit__inner-input__checkbox">
+                                @foreach ($allSeasons as $index => $season)
+                                <input id="checkbox{{ $index }}" type="checkbox" name="seasons[]" value="{{ $season->id }}"
+                                @if(isset($product) && $product->seasons->pluck('id')->contains($season->id)) checked @endif>
+                                <label for="checkbox{{ $index }}" class="season{{ $index }}">{{ $season->name }}</label>
+                                @endforeach
+                            </div>
+                            @if ($errors->has('season'))
+                                <div class="error-message__season">
+                                    <span>{{ $errors->first('season') }}</span>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="edit__inner-detail-form__form-2">
-                <label class="edit__inner-textarea" for="description">
-                    <h3 class="edit__inner-input__ttl">商品説明</h3>
-                    <textarea class="edit__inner-input__textarea" id="description" name="description" rows="6" cols="30" placeholder="">{{ $description }}</textarea>
+                <div class="edit__inner-detail-form__form-2">
+                    <label class="edit__inner-textarea" for="description">
+                        <h3 class="edit__inner-input__ttl">商品説明</h3>
+                        <textarea class="edit__inner-input__textarea" id="description" name="description" rows="6" cols="30" placeholder="">{{ $description }}</textarea>
+                    </label>
+                    @if ($errors->has('description'))
+                        <div class="error-message__description">
+                            <span>{{ $errors->first('description') }}</span>
+                        </div>
+                    @endif
+                </div>
+                <div class="edit__inner-detail-form__form-3">
+                    <div class="edit__inner-btn">
+                        <label class="edit__inner-btn" for="btn-edit">
+                            <input class="register__inner__btn-submit btn-gray" type="button" onclick="window.location.href='/products';" value="戻る" id="btn-edit">
+                            <input class="register__inner__btn-submit btn-yellow edit-btn-yellow" type="submit" id="btn" value="変更を保存">
+                        </label>
+                    </div>
+                </div>
+            </form>
+            <form class="edit__inner-delete-form" action="{{ route('products.destroy', ['productId' => $productId]) }}" method="POST">
+                @csrf
+                <label class="trash-delete">
+                    <button type="submit" aria-label="削除ボタン">
+                        <img class="trash-can" src="/trash-can.png" alt="削除ボタン">
+                    </button>
                 </label>
-                <div class="edit__inner-btn">
-                    <label class="edit__inner-btn" for="btn-edit">
-                        <input class="register__inner__btn-submit btn-gray" type="button" onclick="location.href='/products';" value="戻る" id="btn-edit">
-                        <input class="register__inner__btn-submit btn-yellow edit-btn-yellow" type="submit" name="name" id="btn" value="変更を保存">
-                    </label>
-                    <div class="trash-delete">
-                        <button type="submit" aria-label="削除ボタン">
-                            <img class="trash-can" src="/trash-can.png" alt="削除ボタン">
-                        </button>
-                    </div>
-                </div>
-                
-            </div>
-
+            </form>
         </div>
     </div>
 @endsection
