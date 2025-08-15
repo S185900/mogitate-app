@@ -22,7 +22,7 @@
 
         <div class="edit__inner-detail-form">
 
-            <form action="{{ route('products.update', ['productId' => $productId]) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('products.update', ['productId' => $productId]) }}" method="post" enctype="multipart/form-data" novalidate>
                 @method('PATCH')
                 @csrf
 
@@ -68,7 +68,7 @@
 
                         <!-- 商品名 -->
                         <div class="edit__inner-input" >
-                            <h3 class="edit__inner-input__ttl">商品名</h3>
+                            <h3 class="edit__inner-input__title">商品名</h3>
                             <label class="edit__inner-input__input" for="name-product">
                                 <input class="edit__inner-input__input-submit" type="text" name="name" value="{{ old('name', $product->name ?? '') }}" id="name-product" placeholder="商品名を入力">
                                 <input type="hidden" name="id" value="{{ $product->id ?? old('id') }}">
@@ -82,7 +82,7 @@
 
                         <!-- 値段 -->
                         <div class="edit__inner-input">
-                            <h3 class="edit__inner-input__ttl">値段</h3>
+                            <h3 class="edit__inner-input__title">値段</h3>
                             <label class="edit__inner-input__input" for="price-edit">
                                 <input class="edit__inner-input__input-submit" type="text" name="price" value="{{ old('price', $product->price ?? '') }}" id="price-edit" placeholder="値段を入力">
                                 <input type="hidden" name="id" value="{{ $product->id ?? old('id') }}">
@@ -96,7 +96,7 @@
 
                         <!-- 季節 -->
                         <div class="edit__inner-input">
-                            <h3 class="edit__inner-input__ttl">季節</h3>
+                            <h3 class="edit__inner-input__title">季節</h3>
                             <div class="edit__inner-input__checkbox">
                                 @foreach ($allSeasons as $index => $season)
                                     <input 
@@ -127,7 +127,7 @@
                 <!-- 商品説明 -->
                 <div class="edit__inner-detail-form__form-2">
                     <div class="edit__inner-textarea" for="description">
-                        <h3 class="edit__inner-input__ttl">商品説明</h3>
+                        <h3 class="edit__inner-input__title">商品説明</h3>
                         <textarea class="edit__inner-input__textarea" id="description" name="description" rows="6" cols="30" placeholder="">{{ old('description', $product->description ?? '') }}</textarea>
                         @if ($errors->has('description'))
                             <div class="error-message__description">
@@ -153,7 +153,7 @@
             </form>
 
             <!-- ゴミ箱マーク -->
-            <form class="edit__inner-delete-form" action="{{ route('products.destroy', ['productId' => $productId]) }}" method="post">
+            <form class="edit__inner-delete-form" action="{{ route('products.destroy', ['productId' => $productId]) }}" method="post" novalidate>
                 @method('DELETE')
                 @csrf
                 <label class="trash-delete">

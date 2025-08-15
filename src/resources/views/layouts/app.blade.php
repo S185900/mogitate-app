@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/common.css')}}">
     <link href="https://fonts.cdnfonts.com/css/jsmath-cmti10" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     @yield('css')
 </head>
 <body>

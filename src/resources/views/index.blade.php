@@ -9,7 +9,7 @@
 <div class="index">
 
     <div class="index__heading-flex">
-        <h2 class="index__heading-ttl">商品一覧</h2>
+        <h2 class="index__heading-title">商品一覧</h2>
         <div class="index__heading-btn btn-orange">
             <a class="index__heading-btn-submit" href="{{ route('products.register') }}">&#43;&nbsp;商品を追加</a>
         </div>
@@ -18,7 +18,7 @@
     <div class="index__inner">
         <nav class="index__inner__sidebar">
 
-            <form action="{{ route('products.search') }}" method="get">
+            <form action="{{ route('products.search') }}" method="get" novalidate>
                 @csrf
                 <label class="index__inner-input text-search" for="product-name">
                     <input class="index__inner__sidebar-search-submit" id="product-name" type="text" name="name" value="{{ request('name') }}" placeholder="商品名で検索">
@@ -28,10 +28,10 @@
                 </div>
             </form>
 
-            <form action="{{ route('products.search') }}" method="get">
+            <form action="{{ route('products.search') }}" method="get" novalidate>
                 @csrf
 
-                <h3 class="index__inner__sidebar-h3-ttl">価格順で表示</h3>
+                <h3 class="index__inner__sidebar-h3-title">価格順で表示</h3>
                 <label class="index__inner__sidebar-select" for="price">
                     <select class="index__inner__sidebar-select-price" name="sort" id="price" onchange="this.form.submit()">
                         <option disabled {{ !request('sort') ? 'selected' : '' }}>価格で並べ替え</option>
@@ -54,6 +54,8 @@
                     </label>
                 </div>
 
+                <hr class="line-decoration">
+
             </form>
 
         </nav>
@@ -63,8 +65,8 @@
                 <div class="index__inner__grid-fruit-card" onclick="location.href='/products/{{ $product->id }}'">
                     <img src="{{ asset($product->image) }}" alt="{{ pathinfo($product->image, PATHINFO_FILENAME) }}">
                     <div class="index__inner__grid-fruit-card__product-info">
-                        <h3>{{ $product->name }}</h3>
-                        <p>¥{{ number_format($product->price) }}</p>
+                        <h3 class="index__inner__grid-fruit-card__name">{{ $product->name }}</h3>
+                        <p class="index__inner__grid-fruit-card__price">¥{{ number_format($product->price) }}</p>
                     </div>
                 </div>
             @endforeach

@@ -1,5 +1,5 @@
 .index {
-    max-width: 1600px;
+    max-width: 1800px;
     height: 1700px;
     background-color: #F8F8F8;
 }
@@ -22,10 +22,10 @@
 
 .index__inner {
     display: flex;
-    padding: 50px 60px 20px 60px;
+    padding: 5px 60px 20px 60px;
 }
 
-.index__heading-ttl {
+.index__heading-title {
     font-family: 'Hiragino Kaku Gothic Pro';
     font-weight: 600;
     font-style: W6;
@@ -67,7 +67,7 @@
     margin-bottom: 20px;
 }
 
-.index__inner__sidebar-h3-ttl {
+.index__inner__sidebar-h3-title {
     font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
     font-weight: 600;
     font-style: W6;
@@ -125,6 +125,13 @@
     color: #BEB1A6;
 }
 
+.line-decoration {
+    border: 0;
+    margin-top: 20px;
+    height: 1px;
+    background-color: #E0DFDE;
+}
+
 .index__inner__grid {
     display: grid;
     justify-content: space-between;
@@ -135,10 +142,30 @@
     padding: 5px;
 }
 
+.index__inner__grid-fruit-card__name, h3 {
+    font-family: 'Inter', 'Noto Sans JP';
+    font-weight: 400;
+    font-style: regular;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #4B4B4B;
+}
+
+.index__inner__grid-fruit-card__price {
+    font-family: 'Inter', 'Noto Sans JP';
+    font-weight: 400;
+    font-style: regular;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #4B4B4B;
+}
+
 /* フルーツカードの装飾と動作 */
 .index__inner__grid-fruit-card {
-    width: 364px;
-    height: 318px;
+    width: 400px;
+    height: 370px;
     border: none;
     border-radius: 5px;
     padding: 10px;
@@ -171,7 +198,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px;
+    margin-top: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 /* ページネーション */

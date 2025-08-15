@@ -10,7 +10,7 @@
     <div class="register__inner">
 
         <div class="register__heading">
-            <h2 class="register__heading-ttl">商品登録</h2>
+            <h2 class="register__heading-title">商品登録</h2>
         </div>
 
         <form id="product-form" class="register__inner__form" method="post" action="{{ route('products.store') }}" enctype="multipart/form-data" novalidate>
@@ -18,7 +18,7 @@
 
             <!-- 商品名 -->
             <div class="register__inner-input">
-                <h3 class="register__inner-input__ttl">商品名<span class="required-red-span">必須</span></h3>
+                <h3 class="register__inner-input__title">商品名<span class="required-red-span">必須</span></h3>
                 <label class="register__inner-input__input" for="name-product">
                     <input class="register__inner-input__input-submit" type="text" name="name" id="name-product" value="{{ old('name') }}" placeholder="商品名を入力">
                 </label>
@@ -31,7 +31,7 @@
 
             <!-- 値段 -->
             <div class="register__inner-input">
-                <h3 class="register__inner-input__ttl">値段<span class="required-red-span">必須</span></h3>
+                <h3 class="register__inner-input__title">値段<span class="required-red-span">必須</span></h3>
                 <label class="register__inner-input__input" for="price-product">
                     <input class="register__inner-input__input-submit" type="text" name="price" id="price-product" value="{{ old('price') }}" placeholder="値段を入力">
                 </label>
@@ -44,7 +44,7 @@
 
             <!-- 商品画像 -->
             <div class="register__inner-select">
-                <h3 class="register__inner-input__ttl">商品画像<span class="required-red-span">必須</span></h3>
+                <h3 class="register__inner-input__title">商品画像<span class="required-red-span">必須</span></h3>
                 <div class="edit__inner__grid-fruit-img">
                     @if (session('temporaryFile'))
                         <img src="{{ url(session('temporaryFile')) }}" alt="プレビュー画像">
@@ -77,7 +77,7 @@
 
             <!-- 季節 -->
             <div class="register__inner-input">
-                <h3 class="register__inner-input__ttl">
+                <h3 class="register__inner-input__title">
                     季節
                     <span class="required-red-span">必須</span>
                     <span class="required-red-text">複数選択可</span>
@@ -97,7 +97,7 @@
 
             <!-- 商品説明 -->
             <div class="register__inner-textarea">
-                <h3 class="register__inner-input__ttl">商品説明<span class="required-red-span">必須</span></h3>
+                <h3 class="register__inner-input__title">商品説明<span class="required-red-span">必須</span></h3>
                 <textarea class="register__inner-input__textarea" name="description" rows="6" cols="30" placeholder="例）爽やかな香りと上品な甘みが特長的なキウイは大人から子どもまで大人気のフルーツです。疲れた脳や体のエネルギー補給にも最適の商品です。もぎたてフルーツのスムージーをお召し上がりください！">{{ old('description') }}</textarea>
                 @if ($errors->has('description'))
                     <div class="error-message__description">
