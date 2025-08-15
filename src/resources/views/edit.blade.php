@@ -26,8 +26,7 @@
 
                         <div class="edit__inner__fruit-container">
                             <div class="edit__inner__grid-fruit-img">
-                                <!-- セッションに一時画像が存在すればそちらを優先して表示する -->
-                                <!-- そうでなければ、一覧画面からの値受け渡し -->
+
                                 @if (!empty($temporaryFile))
                                 <img src="{{ asset($temporaryFile) }}" alt="選択したファイル">
                                 @else

@@ -142,24 +142,27 @@ class ProductController extends Controller
         return view('create');
     }
 
-    // 商品登録（ルート：products.store）
+    // iFrameによるファイルアップロード処理(storeメソッド内で独立したpost)
+    public function fileUpload(Request $request)
+    {
+        $uploadedFileField = 'image'; //HTMLの<input>name="image"と統一
+        $temporaryFile = null;
+
+        if ($request->hasFile($uploadedFileField)) {
+            $file = $request->file($uploadedFileField);
+            $fileName = date('Y-m-d_H:i:s') . '_' . $file->getClientOriginalName(); // ファイル名作成(重複回避)
+            $storedFilePath = $file->storeAs('public', $fileName); // storageにファイル保存
+            $temporaryFile = str_replace('public', 'storage', $storedFilePath); // 公開パスに変換
+            session()->put(['temporaryFile' => $this->convertStoragePath($storedFilePath)]); // セッションに保存
+        }
+
+        return back();
+    }
+
+    // 商品登録
     public function store(StoreProductRequest $request)
     {
         // dd($request->all());
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $fileName = date('Y-m-d_H:i:s') . '_' . $file->getClientOriginalName(); // 重複回避
-            $storedFilePath = $file->storeAs('public', $fileName); // storageに保存
-            $request->merge(['image' => str_replace('public', 'storage', $storedFilePath)]); // 公開パスに変換
-            // $storedFilePath = $file->storeAs('public/temporary', $fileName); // 一時保存ディレクトリ
-            // session()->put(['temporaryFile' => asset('storage/', $storedFilePath)]); // セッションに保存
-            // session()->put(['temporaryFile' => str_replace('public', 'storage', $storedFilePath)]);
-            session()->put(['temporaryFile' => $this->convertStoragePath($storedFilePath)]); // セッションに保存
-            // dd([
-            //     'original_path' => $storedFilePath,
-            //     'converted_path' => str_replace('public', 'storage', $storedFilePath)
-            // ]);
-        }
 
         $product = Product::create([
             'name' => $request->input('name'),
@@ -176,11 +179,9 @@ class ProductController extends Controller
         // dd(session()->all());
     }
 
-
     // session強制的にstorage/ファイル名へ変更
     public function convertStoragePath($storedFilePath) {
         return str_replace('public', 'storage', $storedFilePath);
-
     }
 
 

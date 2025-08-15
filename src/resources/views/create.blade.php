@@ -45,38 +45,30 @@
             <div class="register__inner-select">
                 <h3 class="register__inner-input__ttl">商品画像<span class="required-red-span">必須</span></h3>
                 <div class="edit__inner__grid-fruit-img">
-                    <!-- セッションでいずれかのバリデーションに引っ掛かったら初めてプレビュー表示、されなければ何も表示されないままデータベース登録へ進む -->
+
+                    <!-- ファイルがstorageに一時保存されたらプレビュー表示、されなければ何も表示しない -->
                     @if (session('temporaryFile'))
-                        <img src="{{ url(session('temporaryFile')) }}" alt="プレビュー画像">
-                    @else
-                        <p>画像データを選択してください</p>
+                        <img src="{{ asset(session('temporaryFile')) }}" alt="選択したファイル">
                     @endif
 
-                    <!-- @if (session('temporaryFile'))
-                        <img src="{{ str_replace('public', 'storage', session('temporaryFile')) }}" alt="プレビュー画像">
-                        <img src="{{ url('storedFilePath') }}" alt="プレビュー画像">
-                    @else
-                    <p>画像データを選択してください</p>
-                    @endif -->
-                    <!-- @if (session('temporaryFile')) 
-                        <img src="{{ url('http://localhost/storage/2025-08-14_12:46:48_pineapple.png') }}" alt="テスト画像">
-                    @else
-                        <p>画像データを選択してください</p>
-                    @endif -->
                 </div>
+
                 <div class="edit__inner__file-select">
-                    <label class="register__inner-input__file" for="image-product" type="button">
-                        <input class="register__inner-input__file-submit" type="file" name="image" id="image-product" accept="image/*">
-                        ファイルを選択
-                    </label>
+                    <!-- 別ビューをinclude -->
+                    <iframe name="iframe-upload" id="iframe-upload" src="{{ route('products.fileUpload') }}">
+                        @csrf
+                    </iframe>
                     <div class="edit__inner-input__file-name">
-                        @if (session('temporaryFile'))
-                            <p>
-                                {{ (session('temporaryFile')) }}
-                            </p>
-                        @endif
+                        <p>
+                            @if (!empty($temporaryFile))
+                                {{ pathinfo($temporaryFile, PATHINFO_FILENAME) }}
+                            @else
+                                ファイル未選択
+                            @endif
+                        </p>
                     </div>
                 </div>
+
                 @if ($errors->has('image'))
                     <div class="error-message__file">
                         <span>{{ $errors->first('image') }}</span>
