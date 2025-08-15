@@ -4,14 +4,15 @@
 <link rel="stylesheet" href="{{ asset('css/create.css')}}">
 @endsection
 
-<!-- 商品登録画面 -->
-<!-- http://localhost/products/register -->
+<!-- 商品登録ページ -->
 @section('content')
 <div class="register">
     <div class="register__inner">
+
         <div class="register__heading">
             <h2 class="register__heading-ttl">商品登録</h2>
         </div>
+
         <form id="product-form" class="register__inner__form" method="post" action="{{ route('products.store') }}" enctype="multipart/form-data" novalidate>
             @csrf
 
@@ -22,9 +23,9 @@
                     <input class="register__inner-input__input-submit" type="text" name="name" id="name-product" value="{{ old('name') }}" placeholder="商品名を入力">
                 </label>
                 @if ($errors->has('name'))
-                <div class="error-message__name">
-                    <span>{{ $errors->first('name') }}</span>
-                </div>
+                    <div class="error-message__name">
+                        <span>{{ $errors->first('name') }}</span>
+                    </div>
                 @endif
             </div>
 
@@ -45,13 +46,11 @@
             <div class="register__inner-select">
                 <h3 class="register__inner-input__ttl">商品画像<span class="required-red-span">必須</span></h3>
                 <div class="edit__inner__grid-fruit-img">
-
                     @if (session('temporaryFile'))
                         <img src="{{ url(session('temporaryFile')) }}" alt="プレビュー画像">
                     @else
                         <p></p>
                     @endif
-
                 </div>
                 <div class="edit__inner__file-select">
                     <label class="register__inner-input__file" for="image-product" type="button">
@@ -72,7 +71,7 @@
                     </div>
                 @endif
                 <div class="error-message__file_default">
-                    <p>※ファイルを選択後、ファイル名・画像が本画面にて即時プレビュー表示されない場合でも登録は可能です。</br>　登録後、一覧画面からご確認ください。</p>
+                    <p>※ファイルを選択後、ファイル名・画像が本画面にて即時プレビュー表示されない場合でも登録は可能です。</br>&nbsp;&nbsp;&nbsp;登録後、一覧画面からご確認ください。</p>
                 </div>
             </div>
 
@@ -88,7 +87,6 @@
                         <input type="checkbox" id="checkbox{{ $value }}" name="season[]" value="{{ $value }}" {{ in_array($value, old('season', [])) ? 'checked' : '' }}>
                         <label for="checkbox{{ $value }}" class="season1">{{ $label }}</label>
                     @endforeach
-
                     @if ($errors->has('season'))
                         <div class="error-message__season">
                             <span>{{ $errors->first('season') }}</span>
@@ -113,6 +111,7 @@
                 <button class="register__inner__btn-submit btn-gray" type="button" onclick="location.href='/products';" id="btn-back" value="">戻る</button>
                 <button form="product-form" class="register__inner__btn-submit btn-yellow" type="submit" id="btn-submit" value="">登録</button>
             </div>
+
         </form>
     </div>
 </div>

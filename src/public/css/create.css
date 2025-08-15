@@ -64,7 +64,8 @@
     width: 760px;
     height: 43px;
     padding: 11px 20px 11px 20px;
-    border: 1px solid #E0DFDE border-radius: 5px;
+    border: 1px solid #E0DFDE
+    border-radius 5px;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
     background-color: #FFFFFF;
 }
@@ -86,8 +87,7 @@
     outline: none;
 }
 
-
-/* 丸いチェックボックス */
+/* 季節：丸いチェックボックス */
 input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
@@ -101,13 +101,13 @@ input[type="checkbox"] {
     transition: all 0.3s ease;
 }
 
-/* 丸いチェックボックス_チェックした時の背景カラー */
+/* 季節：丸いチェックボックス_チェックした時の背景カラー */
 input[type="checkbox"]:checked {
     background-color: #4B4B4B;
     position: relative;
 }
 
-/* 丸いチェックボックス_チェックマーク */
+/* 季節：丸いチェックボックス_チェックマーク */
 input[type="checkbox"]:checked::after {
     content: "✔";
     font-size: 14px;
@@ -118,7 +118,7 @@ input[type="checkbox"]:checked::after {
     transform: translate(-50%, -50%);
 }
 
-/* 丸いチェックボックス_labelの文字装飾 */
+/* 季節：丸いチェックボックス_labelの文字装飾 */
 .season1,
 .season2,
 .season3,
@@ -135,7 +135,7 @@ input[type="checkbox"]:checked::after {
     cursor: pointer;
 }
 
-/* 丸いチェックボックス_input,labelの水平揃え */
+/* 季節：丸いチェックボックス_input,labelの水平揃え */
 .register__inner-input__checkbox {
     display: flex;
     align-items: center;
@@ -146,7 +146,8 @@ input[type="checkbox"]:checked::after {
 .register__inner-input__textarea {
     width: 760px;
     background-color: #FFFFFF;
-    border: 1px solid #E0DFDE border-radius: 5px;
+    border: 1px solid #E0DFDE;
+    border-radius: 5px;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
     padding: 11px 20px 11px 20px;
     font-family: 'Hiragino Kaku Gothic Pro';

@@ -101,7 +101,8 @@
     width: 500px;
     height: 43px;
     padding: 11px 20px 11px 20px;
-    border: 1px solid #E0DFDE border-radius: 5px;
+    border: 1px solid #E0DFDE;
+    border-radius: 5px;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
     background-color: #FFFFFF;
 }
@@ -189,7 +190,8 @@ input[type="checkbox"]:checked::after {
 .edit__inner-input__textarea {
     width: 1050px;
     background-color: #FFFFFF;
-    border: 1px solid #E0DFDE border-radius: 5px;
+    border: 1px solid #E0DFDE;
+    border-radius: 5px;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
     padding: 11px 20px 11px 20px;
     font-family: 'Hiragino Kaku Gothic Pro';
@@ -229,12 +231,6 @@ input[type="checkbox"]:checked::after {
 .trash-can {
     width: 40px;
 }
-/* 
-.edit__inner-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
 
 .edit__inner-delete-form {
     text-align: left;
