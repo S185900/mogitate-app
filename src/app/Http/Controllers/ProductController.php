@@ -61,7 +61,7 @@ class ProductController extends Controller
             'name' => $product->name,
             'allSeasons' => $allSeasons
         ]);
-        
+
     }
 
 
@@ -89,21 +89,23 @@ class ProductController extends Controller
         // 商品情報の取得
         $product = Product::findOrFail($productId);
 
-        // 一時保存画像の処理
-        $temporaryPath = session('temporary_image_path');
-        if ($temporaryPath) {
-            $newPath = str_replace('temp_images', 'public/images', $temporaryPath);
-            // Laravelのファサードシステムを操作：一時保存から本保存へ移動（シンボリックリンクが機能）
-            Storage::move($temporaryPath, $newPath); // 一時保存から本保存へ移動
-            $validatedData['image'] = $newPath; // 新しい画像パスを設定
-        }
+        // 新しい画像がアップロードされた場合の処理
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+                $fileName = date('Y-m-d_H:i:s') . '_' . $file->getClientOriginalName(); // 重複回避
+                $storedFilePath = $file->storeAs('public', $fileName); // storageに保存
+                $validatedData['image'] = str_replace('public', 'storage', $storedFilePath); // 公開パスに変換
+            } else {
+                // 画像がアップロードされていない場合は既存の画像パスを保持
+                $validatedData['image'] = $product->image;
+            }
 
         // 商品情報を更新
         $product->update([
             'name' => $validatedData['name'],
             'price' => $validatedData['price'],
             'description' => $validatedData['description'],
-            'image' => $validatedData['image'] ?? $product->image, // 画像が未設定の場合は既存画像を保持
+            'image' => $validatedData['image'], // 画像パス更新または保持の値がimageに入っている
         ]);
 
         // 季節データの更新（配列形式で受け取り）
@@ -142,33 +144,26 @@ class ProductController extends Controller
         return view('create');
     }
 
-    // iFrameによるファイルアップロード処理(storeメソッド内で独立したpost)
-    public function fileUpload(Request $request)
-    {
-        $uploadedFileField = 'image'; //HTMLの<input>name="image"と統一
-        $temporaryFile = null;
-
-        if ($request->hasFile($uploadedFileField)) {
-            $file = $request->file($uploadedFileField);
-            $fileName = date('Y-m-d_H:i:s') . '_' . $file->getClientOriginalName(); // ファイル名作成(重複回避)
-            $storedFilePath = $file->storeAs('public', $fileName); // storageにファイル保存
-            $temporaryFile = str_replace('public', 'storage', $storedFilePath); // 公開パスに変換
-            session()->put(['temporaryFile' => $this->convertStoragePath($storedFilePath)]); // セッションに保存
-        }
-
-        return redirect()->route('products.fileUpload');
-    }
-
-    // 商品登録
+    // 商品登録（ルート：products.store）
     public function store(StoreProductRequest $request)
     {
         // dd($request->all());
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $fileName = date('Y-m-d_H:i:s') . '_' . $file->getClientOriginalName(); // 重複回避
+            $storedFilePath = $file->storeAs('public', $fileName); // storageに保存
+            $request->merge(['image' => str_replace('public', 'storage', $storedFilePath)]); // 公開パスに変換
+            // $storedFilePath = $file->storeAs('public/temporary', $fileName); // 一時保存ディレクトリ
+            // session()->put(['temporaryFile' => asset('storage/', $storedFilePath)]); // セッションに保存
+            // session()->put(['temporaryFile' => str_replace('public', 'storage', $storedFilePath)]);
+            session()->put(['temporaryFile' => $this->convertStoragePath($storedFilePath)]); // セッションに保存
+        }
 
         $product = Product::create([
             'name' => $request->input('name'),
             'price' => $request->input('price'),
             'description' => $request->input('description'),
-            'image' => session('temporaryFile') ?? null,
+            'image' => $request->input('image'),
         ]);
 
         if ($request->has('season')) {
@@ -179,9 +174,11 @@ class ProductController extends Controller
         // dd(session()->all());
     }
 
+
     // session強制的にstorage/ファイル名へ変更
     public function convertStoragePath($storedFilePath) {
         return str_replace('public', 'storage', $storedFilePath);
+
     }
 
 

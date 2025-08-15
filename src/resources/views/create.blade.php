@@ -46,42 +46,26 @@
                 <h3 class="register__inner-input__ttl">商品画像<span class="required-red-span">必須</span></h3>
                 <div class="edit__inner__grid-fruit-img">
 
-                    <!-- ファイルがstorageに一時保存されたらプレビュー表示、されなければ何も表示しない -->
                     @if (session('temporaryFile'))
-                        <img src="{{ asset(session('temporaryFile')) }}" alt="選択したファイル">
+                        <img src="{{ url(session('temporaryFile')) }}" alt="プレビュー画像">
+                    @else
+                        <p></p>
                     @endif
 
-                    <!-- iFrameに独立したファイルアップロード処理
-                    <iframe class="iframe-create__wrapper" name="iframe-upload" id="iframe-upload" src="{{ route('products.fileUpload') }}" >
-                        <form id="iframe-upload-form" action="{{ route('products.fileUpload') }}" method="post" enctype="multipart/form-data" target="iframe-upload">
-                        @csrf
-                            <button type="submit">アップロード</button>
-                        </form>
-                    </iframe> -->
-
                 </div>
-
                 <div class="edit__inner__file-select">
-                    <!-- ファイルアップロード -->
-                    <form action="{{ route('products.fileUpload') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <label class="register__inner-input__file" id="file-register" type="button" for="file-register">
-                            <input class="register__inner-input__file-submit" type="file" name="image" accept="image/*" />
-                            ファイルを選択
-                        </label>
-                    </form>
-
+                    <label class="register__inner-input__file" for="image-product" type="button">
+                        <input class="register__inner-input__file-submit" type="file" name="image" id="image-product" accept="image/*">
+                        ファイルを選択
+                    </label>
                     <div class="edit__inner-input__file-name">
-                        <p>
-                            @if (!empty($temporaryFile))
-                                {{ pathinfo($temporaryFile, PATHINFO_FILENAME) }}
-                            @else
-                                ファイル未選択
-                            @endif
-                        </p>
+                        @if (session('temporaryFile'))
+                            <p>
+                                {{ (session('temporaryFile')) }}
+                            </p>
+                        @endif
                     </div>
                 </div>
-
                 @if ($errors->has('image'))
                     <div class="error-message__file">
                         <span>{{ $errors->first('image') }}</span>
@@ -133,4 +117,3 @@
     </div>
 </div>
 @endsection
-

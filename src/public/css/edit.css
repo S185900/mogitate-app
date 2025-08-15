@@ -314,3 +314,15 @@ input[type="checkbox"]:checked::after {
     padding: 15px 0 2px 0;
     text-align: left;
 }
+
+.error-message__file_default {
+    font-family: 'Hiragino Kaku Gothic Pro';
+    font-weight: 300;
+    font-style: W3;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 10%;
+    color: #a3a3a3;
+    padding-top: 12px;
+    text-align: left;
+}

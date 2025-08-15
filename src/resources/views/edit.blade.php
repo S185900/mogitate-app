@@ -37,7 +37,7 @@
 
                             <div class="edit__inner-select">
                                 <label class="register__inner-input__file" type="button" for="file-edit">
-                                    <input class="register__inner-input__file-submit" type="file" name="image" accept="image/*" id="file-edit" onchange="this.form.submit()"/>
+                                    <input class="register__inner-input__file-submit" type="file" name="image" id="file-edit" accept="image/*" />
                                     ファイルを選択
                                 </label>
                                 <div class="edit__inner-input__file-name">
@@ -55,6 +55,9 @@
                                     <span>{{ $errors->first('image') }}</span>
                                 </div>
                             @endif
+                            <div class="error-message__file_default">
+                                <p>※ファイルを選択後、ファイル名・画像が本画面にて</br>　即時プレビュー表示されない場合でも変更は可能です。</br>　変更を保存後、一覧画面からご確認ください。</p>
+                            </div>
                         </div>
 
                     <div class="edit__inner__input-container">

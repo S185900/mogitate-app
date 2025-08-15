@@ -10,7 +10,8 @@ use App\Http\Controllers\ProductController;
 Route::get('/products/register', [ProductController::class, 'showRegisterForm'])->name('products.register');
 
 // 商品登録ページ：ファイルを選択ボタン→画像ファイルをプレビュー表示
-Route::get('/products/register/fileupload', [ProductController::class, 'fileUpload'])->name('products.fileUpload');
+// Route::post('/image/upload', [ProductController::class, 'storeTemporaryFile'])->name('image.upload');
+
 
 // 商品登録ページ：入力してデータベースに保存
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
