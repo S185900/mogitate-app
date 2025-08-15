@@ -51,13 +51,26 @@
                         <img src="{{ asset(session('temporaryFile')) }}" alt="選択したファイル">
                     @endif
 
+                    <!-- iFrameに独立したファイルアップロード処理
+                    <iframe class="iframe-create__wrapper" name="iframe-upload" id="iframe-upload" src="{{ route('products.fileUpload') }}" >
+                        <form id="iframe-upload-form" action="{{ route('products.fileUpload') }}" method="post" enctype="multipart/form-data" target="iframe-upload">
+                        @csrf
+                            <button type="submit">アップロード</button>
+                        </form>
+                    </iframe> -->
+
                 </div>
 
                 <div class="edit__inner__file-select">
-                    <!-- 別ビューをinclude -->
-                    <iframe name="iframe-upload" id="iframe-upload" src="{{ route('products.fileUpload') }}">
+                    <!-- ファイルアップロード -->
+                    <form action="{{ route('products.fileUpload') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                    </iframe>
+                        <label class="register__inner-input__file" id="file-register" type="button" for="file-register">
+                            <input class="register__inner-input__file-submit" type="file" name="image" accept="image/*" />
+                            ファイルを選択
+                        </label>
+                    </form>
+
                     <div class="edit__inner-input__file-name">
                         <p>
                             @if (!empty($temporaryFile))

@@ -156,7 +156,7 @@ class ProductController extends Controller
             session()->put(['temporaryFile' => $this->convertStoragePath($storedFilePath)]); // セッションに保存
         }
 
-        return back();
+        return redirect()->route('products.fileUpload');
     }
 
     // 商品登録
@@ -168,7 +168,7 @@ class ProductController extends Controller
             'name' => $request->input('name'),
             'price' => $request->input('price'),
             'description' => $request->input('description'),
-            'image' => $request->input('image'),
+            'image' => session('temporaryFile') ?? null,
         ]);
 
         if ($request->has('season')) {
