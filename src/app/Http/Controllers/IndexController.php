@@ -43,7 +43,6 @@ class IndexController extends Controller
         $allSeasons = Season::all();
         $product = Product::with('seasons')->findOrFail($productId);
 
-        // 一覧画面から詳細画面へのデータ受け渡し
         return view('edit', [
             'productId' => $product->id,
             'product' => $product,

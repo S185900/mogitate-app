@@ -16,7 +16,6 @@
         <form id="product-form" class="register__inner__form" method="post" action="{{ route('products.store') }}" enctype="multipart/form-data" novalidate>
             @csrf
 
-            <!-- 商品名 -->
             <div class="register__inner-input">
                 <h3 class="register__inner-input__title">商品名<span class="required-red-span">必須</span></h3>
                 <label class="register__inner-input__input" for="name-product">
@@ -29,7 +28,6 @@
                 @endif
             </div>
 
-            <!-- 値段 -->
             <div class="register__inner-input">
                 <h3 class="register__inner-input__title">値段<span class="required-red-span">必須</span></h3>
                 <label class="register__inner-input__input" for="price-product">
@@ -42,7 +40,6 @@
                 @endif
             </div>
 
-            <!-- 商品画像 -->
             <div class="register__inner-select">
                 <h3 class="register__inner-input__title">商品画像<span class="required-red-span">必須</span></h3>
                 <div class="edit__inner__grid-fruit-img">
@@ -75,7 +72,6 @@
                 </div>
             </div>
 
-            <!-- 季節 -->
             <div class="register__inner-input">
                 <h3 class="register__inner-input__title">
                     季節
@@ -95,7 +91,6 @@
                 </div>
             </div>
 
-            <!-- 商品説明 -->
             <div class="register__inner-textarea">
                 <h3 class="register__inner-input__title">商品説明<span class="required-red-span">必須</span></h3>
                 <textarea class="register__inner-input__textarea" name="description" rows="6" cols="30" placeholder="例）爽やかな香りと上品な甘みが特長的なキウイは大人から子どもまで大人気のフルーツです。疲れた脳や体のエネルギー補給にも最適の商品です。もぎたてフルーツのスムージーをお召し上がりください！">{{ old('description') }}</textarea>
@@ -106,7 +101,6 @@
                 @endif
             </div>
 
-            <!-- ボタン -->
             <div class="register__inner-btn">
                 <button class="register__inner__btn-submit btn-gray" type="button" onclick="location.href='/products';" id="btn-back" value="">戻る</button>
                 <button form="product-form" class="register__inner__btn-submit btn-yellow" type="submit" id="btn-submit" value="">登録</button>

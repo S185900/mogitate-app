@@ -35,7 +35,6 @@ class ProductsSeasonsTableSeeder extends Seeder
             ['product_id' => 10, 'season_id' => 2], // メロン (夏)
         ];
 
-        // DB挿入ロジック
         foreach ($productsSeasonsData as $seasonConnection) {
         DB::table('products_seasons')->insert($seasonConnection);
         }

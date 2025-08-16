@@ -23,7 +23,6 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules()
     {
-        // 新規データのみバリデーションさせる条件を組み込み、既存データには例外を設ける
         return [
             'name' => 'required|max:255',
             'price' => 'required|numeric|min:0|max:10000',

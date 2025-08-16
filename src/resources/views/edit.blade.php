@@ -28,7 +28,6 @@
 
                 <div class="edit__inner-detail-form__form-1">
 
-                    <!-- 商品画像 -->
                     <div class="edit__inner__fruit-container">
                         <div class="edit__inner__grid-fruit-img">
                             @if (!empty($temporaryFile))
@@ -66,7 +65,6 @@
 
                     <div class="edit__inner__input-container">
 
-                        <!-- 商品名 -->
                         <div class="edit__inner-input" >
                             <h3 class="edit__inner-input__title">商品名</h3>
                             <label class="edit__inner-input__input" for="name-product">
@@ -80,7 +78,6 @@
                             @endif
                         </div>
 
-                        <!-- 値段 -->
                         <div class="edit__inner-input">
                             <h3 class="edit__inner-input__title">値段</h3>
                             <label class="edit__inner-input__input" for="price-edit">
@@ -94,7 +91,6 @@
                             @endif
                         </div>
 
-                        <!-- 季節 -->
                         <div class="edit__inner-input">
                             <h3 class="edit__inner-input__title">季節</h3>
                             <div class="edit__inner-input__checkbox">
@@ -124,7 +120,6 @@
 
                 </div>
 
-                <!-- 商品説明 -->
                 <div class="edit__inner-detail-form__form-2">
                     <div class="edit__inner-textarea" for="description">
                         <h3 class="edit__inner-input__title">商品説明</h3>
@@ -137,7 +132,6 @@
                     </div>
                 </div>
 
-                <!-- ボタン -->
                 <div class="edit__inner-detail-form__form-3">
                     <div class="edit__inner-btn">
                         <button class="register__inner__btn-submit btn-gray"
@@ -152,7 +146,6 @@
 
             </form>
 
-            <!-- ゴミ箱マーク -->
             <form class="edit__inner-delete-form" action="{{ route('products.destroy', ['productId' => $productId]) }}" method="post" novalidate>
                 @method('DELETE')
                 @csrf

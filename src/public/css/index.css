@@ -35,7 +35,6 @@
     color: #333333;
 }
 
-/* サイドバーの検索窓 */
 .text-search {
     display: block;
     width: 240px;
@@ -46,7 +45,6 @@
     background-color: #FFFFFF;
 }
 
-/* サイドバーの検索窓_文字装飾 */
 .index__inner__sidebar-search-submit input {
     font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
     font-weight: 300;
@@ -57,7 +55,6 @@
     color: #4B4B4B;
 }
 
-/* サイドバーの検索窓_入力するときだけ文字色を濃くする */
 .index__inner__sidebar-search-submit:focus {
     color: #333333;
     outline: none;
@@ -90,7 +87,6 @@
     margin-top: 20px;
 }
 
-/* サイドバーの価格プルダウン_文字装飾 */
 .index__inner__sidebar-select-price {
     font-family: 'Hiragino Kaku Gothic Pro', 'Noto Sans JP';
     font-weight: 300;
@@ -284,10 +280,8 @@
     margin-top: 20px;
 }
 
-/* ホバー時のスタイル */
 .index__inner__sidebar-filter-tabs:hover {
-    background-color: rgb(221, 180, 0);
-    /* 元の色より少し暗いトーンに変更 */
+    background-color: rgb(251, 230, 132);
 }
 
 .close_btn {

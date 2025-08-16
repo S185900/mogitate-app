@@ -81,7 +81,6 @@
     width: 100%;
 }
 
-/* 入力フォームに入力するときだけ文字色を濃くする */
 .register__inner-input__input-submit:focus {
     color: #333333;
     outline: none;
@@ -101,13 +100,11 @@ input[type="checkbox"] {
     transition: all 0.3s ease;
 }
 
-/* 季節：丸いチェックボックス_チェックした時の背景カラー */
 input[type="checkbox"]:checked {
     background-color: #4B4B4B;
     position: relative;
 }
 
-/* 季節：丸いチェックボックス_チェックマーク */
 input[type="checkbox"]:checked::after {
     content: "✔";
     font-size: 14px;
@@ -118,7 +115,6 @@ input[type="checkbox"]:checked::after {
     transform: translate(-50%, -50%);
 }
 
-/* 季節：丸いチェックボックス_labelの文字装飾 */
 .season1,
 .season2,
 .season3,
@@ -135,7 +131,6 @@ input[type="checkbox"]:checked::after {
     cursor: pointer;
 }
 
-/* 季節：丸いチェックボックス_input,labelの水平揃え */
 .register__inner-input__checkbox {
     display: flex;
     align-items: center;
@@ -159,7 +154,6 @@ input[type="checkbox"]:checked::after {
     color: #4B4B4B;
 }
 
-/* 入力フォームに入力するときだけ文字色を濃くする */
 .register__inner-input__textarea:focus {
     color: #333333;
     outline: none;

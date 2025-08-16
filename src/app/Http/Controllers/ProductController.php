@@ -20,11 +20,10 @@ class ProductController extends Controller
         // 新しく画像がアップロードされた場合の処理
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-                $fileName = date('Y-m-d_H:i:s') . '_' . $file->getClientOriginalName(); // 重複回避のため日時付与
-                $storedFilePath = $file->storeAs('public', $fileName); // storageに保存
-                $validatedData['image'] = str_replace('public', 'storage', $storedFilePath); // 公開パスへ変換
+                $fileName = date('Y-m-d_H:i:s') . '_' . $file->getClientOriginalName();
+                $storedFilePath = $file->storeAs('public', $fileName);
+                $validatedData['image'] = str_replace('public', 'storage', $storedFilePath);
             } else {
-                // 画像がアップロードされていない場合は既存の画像パスを保持
                 $validatedData['image'] = $product->image;
             }
 
@@ -32,7 +31,7 @@ class ProductController extends Controller
             'name' => $validatedData['name'],
             'price' => $validatedData['price'],
             'description' => $validatedData['description'],
-            'image' => $validatedData['image'], // 画像パス更新または保持の値がimageに入っている
+            'image' => $validatedData['image'],
         ]);
 
         $product->seasons()->sync($request->input('season', []));
@@ -60,9 +59,9 @@ class ProductController extends Controller
     {
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $fileName = date('Y-m-d_H:i:s') . '_' . $file->getClientOriginalName(); // 重複回避のため日時付与
-            $storedFilePath = $file->storeAs('public', $fileName); // storageに保存
-            $request->merge(['image' => str_replace('public', 'storage', $storedFilePath)]); // 公開パスへ変換
+            $fileName = date('Y-m-d_H:i:s') . '_' . $file->getClientOriginalName();
+            $storedFilePath = $file->storeAs('public', $fileName);
+            $request->merge(['image' => str_replace('public', 'storage', $storedFilePath)]);
             session()->put(['temporaryFile' => $this->convertStoragePath($storedFilePath)]);
         }
 
