@@ -1,7 +1,4 @@
-<!-- create.blade.phpの中に組み込み -->
-
 <!-- iFrame独立ファイル選択とプレビュー表示だけのpost -->
-
 
 <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data" target="iframe-upload">
     @csrf
